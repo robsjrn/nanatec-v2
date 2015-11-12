@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="RentmngtAppLogin">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nana | Login</title>
+    <link rel="stylesheet" href="lib/lib.css">
+    
+  
+   
+  </head>
+
+    <body class="hold-transition login-page" data-ng-controller="loginCtrl">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="index.html"><span class="fa fa-home"><b>Nana</b></span></a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">  <span class="fa fa-sign-in"> Sign in to start your session</span></p>
+        <form >
+
+
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" name="username" placeholder="Identification No." required="" ng-model="user.username" autofocus="" />
+            <span class="fa fa-user form-control-feedback"></span>
+          </div>
+
+          <div class="form-group has-feedback">
+           <input type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password" required=""/> 
+            <span class="fa fa-lock form-control-feedback"></span>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-4">
+              <button type="submit" ng-disabled="login.$invalid" ng-click="Userlogin()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div><!-- /.col -->
+          </div>
+        </form>
+
+        <div class="social-auth-links text-center">
+          <p>- OR -</p>
+          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
+          <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
+        </div><!-- /.social-auth-links -->
+
+        <p> By Signing in, you confirm that you've reviewed & accepted the <a href="/Terms.html">Terms & Conditions.</a></p>
+        <a  href="/AccountRecovery.html">Forgot Password</a>
+        
+
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+
+
+     <script src="lib/libs.js"></script>
+      <script src="login/js/login.js"></script>
+   
+  </body>
+ 
+
+ </html>
+
+
+
+
+
+      

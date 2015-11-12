@@ -1,0 +1,29 @@
+      <center><h4>{{ReportFor}}</h4></center>
+ <br>
+ <div class="TenantList" >
+<table >
+            <caption> <h5>All Houses List </h5></caption>
+            <thead>
+                <tr>
+				    <th>No.</th>
+                    <th>House Name</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+			
+            <tbody>
+			 <tr></tr>
+                {{#data1}}
+                <tr>
+				    <td>{{@index}}</td>
+                    <td>{{number}}</td>
+                    <td>{{amount}}</td>
+                    <td>{{type.name}}</td>
+			
+                </tr>
+                {{/data1}}
+            </tbody>
+			
+  </table>
+</div>

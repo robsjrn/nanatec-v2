@@ -1,0 +1,100 @@
+        
+
+  <div class="col-md-12">  
+
+   <section  >
+      <ol class="breadcrumb">
+            <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li ><a href="#/properties"> <i class="fa fa-building"></i> Properties</a></li>
+            <li ><a href="#"><i class="active fa fa-edit"> Edit Property</i></a></li>
+          </ol>    
+     </section>
+
+       
+            <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Editing   {{viewproperty.name}} Property </h3>
+                
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                        <form >
+                      
+
+                  <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Property Name</label>
+                              <input type="text" class="form-control" placeholder="Name"  ng-model="property.name">
+                           </div>
+                           
+                           <div class="form-group">
+                              <label>Contact Name</label>
+                              <input type="text" class="form-control" placeholder="Contact Name" ng-model="property.contact.name">
+                           </div>
+                           
+                           <div class="form-group">
+                              <label> Contact Number</label>
+                              <input type="text" class="form-control" placeholder="Contact Number"  ng-model="property.contact.number">
+                           </div>
+
+                             <div class="form-group">
+                              <label>Location </label>
+                              <input type="text" class="form-control" placeholder="Location"  ng-model="property.location">
+                              <p class="help-block"><a >Click Here to Edit Property on Map</a></p>
+                           </div>
+
+                           
+                       </div>
+
+
+                           
+                 
+                      <div class="col-md-6">
+                    
+                             <div class="form-group">
+                              <label>Property Type</label>
+                              <select class="form-control" ng-model="property.type">
+                                <option value="apartment" >Apartments</option>
+                                <option value="land">Land</option>
+                                <option value="office" >Office</option>
+                              </select>
+                            
+
+                            </div>
+                  
+                           <div class="form-group">
+                              <label>Property Status</label>
+                              <select class="form-control" ng-model="property.status">
+                                <option value="sale">For Sale</option>
+                                <option value="rent" >For Rent</option>
+                              </select>
+                             
+                            </div>
+                           <div class="form-group">
+                              <label>Property Description </label>
+                              <textarea class="form-control" rows="3" placeholder="Description ..."  ng-model="property.description"></textarea>
+                            </div>
+
+                            
+
+
+                                 
+                        </div>
+                      </form>           
+                        </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                   <span >
+                      <button  class="btn btn-warning" ng-click="update(property)">
+                        Update
+                      </button>
+                      <button type="button" class="btn btn-success" ng-click="cancel()" >
+                        Cancel
+                      </button>
+                    </span>
+                </div>
+            </div><!-- /.box -->
+
+           
+   </div>          

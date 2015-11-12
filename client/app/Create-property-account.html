@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html  ng-app="RentmngtApp"> 
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+          <link rel="stylesheet" href="lib/lib.css">
+          <link rel="stylesheet" href="home/css/homepage.css">
+
+   
+   
+
+  </head>
+  <body class="page-sub-page" >
+
+    <div class="wrapper" 
+        <!-- Header -->
+		    <div ng-include="'Banner-Header.html'"></div>
+        <!-- body -->
+     <div class="content">
+	      <div id="page-content">
+								<!-- Breadcrumb -->
+								<div class="container">
+									<ol class="breadcrumb">
+										<li><a href="#">Home</a></li>
+										<li class="active">Property Registration</li>
+									</ol>
+								</div>
+		 
+		 <div class="container" data-ng-controller="PropertyRegistration">
+				<div class="row">
+					<div class="col-md-5">
+                     <div class="container">
+                         <header class="section-title"><h4>What we Do for You</h4></header>
+
+						 <div class="row">
+                                 <div class="col-md-6 col-sm-4">
+									    <div class="feature-box equal-height">
+											 <figure class="icon"><i class="fa fa-folder"></i></figure>
+											<aside class="description">
+														 <header><h3>Benefits As a Property Lister</h3></header>
+															<p>.We Advertise your Property</p>
+															<p>.We Help You sell your Property in Shortest time </p>
+															<p>.Have Access to Thousand of Potential Buyers  </p>
+															<p>.Have Access to Property  Market Analysis around your Neighborhood  </p>
+															 <p>.Expose your listing to investors, owners, tenants and brokers.</p>
+															 <p>.Get the names and phone numbers of prospects interested in your type of listing</p>
+															 <p>.Track how often and when your listing is viewed </p>
+															 <p>.Free membership allows you to view hundreds of thousands of properties posted by members.</p>
+																
+											</aside>
+									 </div><!-- /.feature-box -->
+								  </div><!-- /.col-md-4 -->
+						 </div>  <!-- Row -->
+						  
+                          <div class="row">
+                                 <div class="col-md-6 col-sm-4">
+									    <div class="feature-box equal-height">
+											 <figure class="icon"><i class="fa fa-folder"></i></figure>
+											<aside class="description">
+														 <header><h3>Benefits As a Property Manager</h3></header>
+															<p>.We Help you Manage Your Tenant information</p>
+															<p>.Have access to Real time Comprehensive Reports </p>
+															<p>.Help you Communicate to Tenants  </p>
+															<p>.Customisable and Easy to use Interface </p>
+																
+											</aside>
+									 </div><!-- /.feature-box -->
+								  </div><!-- /.col-md-4 -->
+						 </div>  <!-- Row -->
+
+					 </div>
+					
+					</div>
+                		<div class="col-md-4 col-md-offset-3">
+						  <div class="panel panel-default">
+                            <div class="panel-body">
+
+                         	  <br>
+							     <ul class="nav nav-tabs">
+								   <li ><a data-toggle="tab" href="#login">Login</a></li>
+								   <li class="active"><a data-toggle="tab" href="#registration">Register</a></li>
+								</ul>
+                           
+
+									<div class="tab-content">
+										<div id="login" class="tab-pane fade">
+											<div  >
+									    <form class="form-signin" id="login">
+										      <h3 class="form-signin-heading"> <span class="fa fa-sign-in">Login</h3>
+										      <span ng-show="showSpinner"><i class="fa fa-refresh fa-spin"></i></span>
+
+										     <input type="text" class="form-control" name="username" placeholder="User Name" required="" ng-model="user.username" autofocus="" />
+										     <input type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password" required=""/>      
+										   <br>
+										     <button ng-disabled="login.$invalid" ng-click="Userlogin()" class="btn btn-lg btn-primary btn-block" type="submit">Login</button> 
+										    <hr>
+										    <p> By Signing in, you confirm that you've reviewed & accepted the <a href="/Terms.html">Terms & Conditions.</a></p>
+										    <a  href="/AccountRecovery.html">Forgot Password</a>
+										   <br>
+										 
+										</form>
+									 
+										<div ng-show="invalidcredential" class="alert alert-danger"><strong>Invalid Credential !!!</strong> </div>  
+										  <div ng-show="noAccess" class="alert alert-danger"><strong>Sorry But you have no Access..Contact The Administrator</strong> </div>    
+										
+									  </div>
+										</div>
+										<div id="registration" class="tab-pane fade in active">
+                                              <div ng-if="SuccessStatus" class="alert alert-success" role="alert">Account Created Proceed to <a data-toggle="tab" href="#login" >Login</a></div>
+                                                  <div ng-if="ErrorStatus" class="alert alert-error" role="alert">Error Occurred Kindly Retry Later</div>
+											 <form  name="Registrationfrm" novalidate>
+                                     		      <br/>
+													
+													<div class="form-group  input-group-sm">
+													<input type="text" class="form-control" placeholder="Names" name="Names"  ng-model="Registration.names" ng-minlength="5" required ng-disabled="disableComponents" />
+													<div class="error-messages" ng-if="interacted(Registrationfrm.Names)" ng-messages="Registrationfrm.Names.$error" ng-messages-include="error-messages"></div>
+												  </div>
+												  
+												
+													<div class="form-group input-group-sm">
+													<input type="text" class="form-control" placeholder="Contacts" name="contact"  ng-model="Registration.contacts"  required ng-disabled=disableComponents />
+													<div class="error-messages" ng-if="interacted(Registrationfrm.contact)" ng-messages="Registrationfrm.contact.$error" ng-messages-include="error-messages"></div>
+												  </div>
+
+                                                  <div class="form-group input-group-sm">
+													<input type="email" class="form-control" placeholder="Email" name="email"  ng-model="Registration.email"  required ng-disabled=disableComponents />
+													<div class="error-messages" ng-if="interacted(Registrationfrm.email)" ng-messages="Registrationfrm.email.$error" ng-messages-include="error-messages"></div>
+												  </div>
+
+													<div class="form-group input-group-sm">
+													
+														  <select ng-model="Registration.Registrationtype" class="form-control" id="regtype" data-toggle="tooltip" data-placement="top" ng-disabled="disableComponents" title="Choose Registration Type">
+														    <option value="">Registration Type</option>
+													    	<option value="PL">Property Listing</option>
+															<option value="PM">Property Management</option>
+														  </select>
+														</div>
+
+												   <p>Login Details</p>
+												   <hr>
+												  
+												
+													 <div class="form-group input-group-sm">
+													<input type="text" class="form-control" 
+													placeholder="user Name" 
+													name="username"  
+													ng-model="Registration.username"
+													ng-model-options="{ debounce: 700, blur : 0 }"
+													check-username
+													required
+													ng-disabled=disableComponents
+													/>
+													<div class="error-messages" ng-if="interacted(Registrationfrm.username)" ng-messages="Registrationfrm.username.$error" ng-messages-include="error-messages">
+													<div ng-message when="usernameAvailable">
+														<div class="error-messages alert-error">User name Taken</div>
+													  </div>
+													</div>
+													<span  ng-show="Registrationfrm.username.$pending">Checking Availability . . .</span>
+												  </div>
+												 
+												
+													<div class="form-group input-group-sm">
+													<input type="password"  class="form-control" id="pwd" name="pwd" ng-model="Registration.password" ng-minlength="5"  placeholder="New Password" required ng-disabled=disableComponents />	<div class="error-messages" ng-if="interacted(Registrationfrm.pwd)" ng-messages="Registrationfrm.pwd.$error" ng-messages-include="error-messages"></div>									
+													 </div>
+													
+													  <div class="form-group input-group-sm">
+														<input type="password"  class="form-control" id="Confirmpwd" name="Confirmpwd" ng-model="confirmpwd" placeholder="Confirm Password"  required 
+														match-validator="Registration.password" ng-disabled=disableComponents />
+														<div class="error-messages" ng-if="interacted(Registrationfrm.Confirmpwd)" ng-messages="Registrationfrm.Confirmpwd.$error" ng-messages-include="error-messages">
+														   <div ng-message="match">The password do not match</div>
+														</div>
+												  </div>
+									 			
+													<div class="form-group">
+													  <button  class="btn btn-primary btn-block" ng-click="Save()" >Create Account</button>	
+												</div>   	
+											  </form>
+                                    </div>
+									</div>
+										</div>
+									</div>
+							</div>
+
+					
+			  </div>
+			 
+           </div>
+
+     </div>
+       <!-- body End-->
+   </div>  <!-- wrapper-->
+	   <!-- Footer -->
+		    <div ng-include="'footer.html'"></div>
+         <!-- Content -->
+       <script src="lib/libs.js"></script>
+        <script src="home/js/home.js"></script>
+        <script src="home/templates/templates.js"></script>
+
+  <script type="text/ng-template" id="error-messages">
+      <div ng-message="required">This field is required</div>
+      <div ng-message="minlength">This field is too short</div>
+  </script>
+
+
+</body>
+</html>

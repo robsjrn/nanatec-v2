@@ -1,0 +1,69 @@
+       <div>
+            <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Showing  {{viewproperty.name}} Property </h3>
+                
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                         <form role="form">
+                         <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Property Name</label>
+                             
+                                 <input type="text" class="form-control"   ng-model="viewproperty.name" disabled>
+                           </div>
+                           
+                           <div class="form-group">
+                              <label>Contact Name</label>
+
+                               <input type="text" class="form-control"   ng-model="viewproperty.contact.name" disabled>
+                           </div>
+                           
+                           <div class="form-group">
+                              <label> Contact Number</label>
+                              <input type="text" class="form-control"   ng-model="viewproperty.contact.number" disabled>
+                      
+                           </div>
+
+                             <div class="form-group">
+                              <label>Location </label>
+                              <input type="text" class="form-control"   ng-model="viewproperty.location" disabled>
+                              <p class="help-block"><a >Click Here to view on Map</a></p>
+                           </div>
+
+                           
+                       </div>
+                      <div class="col-md-6">
+                    
+                            <div class="form-group">
+                              <label>Property Type</label>
+                             <input type="text" class="form-control"   ng-model="viewproperty.type" disabled>
+
+                            </div>
+                  
+                           <div class="form-group">
+                              <label>Property Status</label>
+                               <input type="text" class="form-control"   ng-model="viewproperty.status" disabled>
+                             
+                            </div>
+                           <div class="form-group">
+                              <label>Property Description </label>
+                              <textarea class="form-control" rows="4"   ng-model="viewproperty.description" disabled></textarea>
+                            </div>
+
+                                 
+                        </div>
+                                 
+                        </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                  Visit <a href="https://www.nana.com/">Select2 documentation</a> for more examples and information about the plugin.
+                </div>
+            </div><!-- /.box -->
+
+            <div class="ngdialog-buttons">
+                <button type="button" class="ngdialog-button ngdialog-button-error" ng-click="closeThisDialog()">Close</button>
+                
+             </div>

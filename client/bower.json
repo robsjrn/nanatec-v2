@@ -1,0 +1,27 @@
+{
+  "name": "Nana",
+  "version": "1.0.0",
+  "description": "Property Management System",
+  "private": "true",
+  "authors": [
+    "Robert Muthumbi"
+  ],
+  "dependencies": {
+    "angular": "1.4.7",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0",
+    "ionic": "~1.1.0",
+    "jquery-ui": "~1.11.4",
+    "angular-route": "~1.4.7",
+    "angular-messages": "~1.4.7",
+    "angular-xeditable": "~0.1.9"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

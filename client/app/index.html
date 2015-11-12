@@ -1,0 +1,240 @@
+<!doctype html>
+
+<html  ng-app="RentmngtApp"> 
+  <head>
+    <meta charset="utf-8">
+    <title>Nana</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+         <link rel="stylesheet" href="lib/lib.css">
+          <link rel="stylesheet" href="home/css/homepage.css">
+
+  
+
+  </head>
+         <body class="page-homepage map-google navigation-fixed-top horizontal-search" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+         <!-- Wrapper -->
+             <div class="wrapper">
+
+            <!-- Header -->
+        
+            <div ng-include="'Banner-Header.html'"></div>
+          
+                   <!--End of Header -->
+
+                          <!-- Content -->
+
+                          <div class="content">
+              
+                   <!-- Search Box -->
+                 <div class="cont">
+                  <div class="search-box-wrapper" style="z-index: 98;">
+                    <div class="search-box-inner">
+                      <div class="container">
+                        <div class="search-box map show-search-box">
+                          <ul class="nav nav-pills">
+                             
+                            <li class="active"><a href="#search-form-sale" data-toggle="tab">Sale</a></li>
+                            <li><a href="#search-form-rent" data-toggle="tab">Rent</a></li>
+                            <li><a href="#search-form-rent" data-toggle="tab">Projects</a></li>
+                             <li><a href="#search-location" data-toggle="tab">Location Search</a></li>
+                            
+                          </ul>
+                          <hr>
+                          <div class="tab-content">
+
+                                         
+
+                            <div class="tab-pane fade in active" id="search-form-sale">
+                              <a class="advanced-search-toggle" data-toggle="collapse" data-parent="#accordion" href="#advanced-search-sale">Advanced Sale Search <i class="fa fa-plus"></i></a>
+                              <form role="form" id="form-map-sale" class="form-map form-search clearfix has-dark-background"  action="properties-listing.html">
+                                <div id="advanced-search-sale" class="panel-collapse collapse">
+                                  <div class="advanced-search">
+                                    <header><h3>Property Features</h3></header>
+                                    <ul class="submit-features">
+                                      <li><div class="checkbox"><label><input type="checkbox">Air conditioning</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Heating</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Internet</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Microwave</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Smoking allowed</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Use of pool</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Toaster</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Coffee pot</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Cable TV</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Parquet</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Roof terrace</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Terrace</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Iron</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Hi-Fi</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Beach</label></div></li>
+                                      <li><div class="checkbox"><label><input type="checkbox">Garage</label></div></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-2 col-sm-4">
+                                    <div class="form-group">
+                                      <select name="form-sale-country">
+                                        <option value="">County</option>
+                                        <option value="1">Nairobi</option>
+                                        <option value="2">Mombasa</option>
+                                        <option value="3">Nyeri</option>
+                                        <option value="4">Kisumu</option>
+                                    
+                                      </select>
+                                    </div><!-- /.form-group -->
+                                  </div>
+                                  <div class="col-md-2 col-sm-4">
+                                    <div class="form-group">
+                                      <select name="form-sale-city">
+                                        <option value="">City</option>
+                                        <option value="">County</option>
+                                        <option value="1">Nairobi</option>
+                                        <option value="2">Mombasa</option>
+                                        <option value="3">Nyeri</option>
+                                        <option value="4">Kisumu</option>
+                                      </select>
+                                    </div><!-- /.form-group -->
+                                  </div>
+                                  
+                                  <div class="col-md-2 col-sm-4">
+                                    <div class="form-group">
+                                      <select name="form-sale-property-type">
+                                        <option value="">Property Type</option>
+                                        <option value="1">Apartment</option>
+                                        <option value="2">Condominium</option>
+                                        <option value="3">Cottage</option>
+                                        <option value="4">Flat</option>
+                                        <option value="5">House</option>
+                                      </select>
+                                    </div><!-- /.form-group -->
+                                  </div>
+                                  <div class="col-md-2 col-sm-4">
+                                    <div class="form-group">
+                                      <select name="form-sale-price">
+                                        <option value="">Price</option>
+                                        <option value="1">< 10,000 Ksh</option>
+                                        <option value="1">Ksh 10,000 +</option>
+                                        <option value="2">Ksh 50,000 +</option>
+                                        <option value="3">Ksh 100,000 +</option>
+                                        <option value="4">Ksh 500,000 +</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2 col-sm-4">
+                                    <div class="form-group">
+                                  <button type="submit" formaction="properties-listing.html" class="btn btn-default">Search Sale</button>
+                                    </div><!-- /.form-group -->
+                                  </div>
+                                </div>
+                              </form><!-- /#form-map-sale -->
+                            </div><!-- /#search-form-rent -->
+                                                       
+
+                                    <div class="tab-pane fade in" id="search-location"> <!-- /#search-location -->
+                                <form role="form" id="form-map-rent" class="form-map form-search clearfix">
+                                   <div class="row">
+                                        <div class="col-sm-8 col-md-8">
+                                       <span ng-click="getAddress()" class="link-arrow geo-location pull-right">Search houses in My Location</span>
+                                    
+                                    <div class="form-group">
+                                      <label for="address-map">Type the Location </label>
+                                      <input type="text" id="autocomplete" class="form-control" ng-model="address" googleautocomplete="" placeholder="Type  Location" />
+                                    </div><!-- /.form-group -->
+                                     </div>
+                                     <div class="col-sm-4 col-md-4">
+                                        <br/>
+                                         <button type="submit" class="btn btn-danger">Search </button>
+                                                                        </div>
+                                  </div>
+                              </form>
+                            </div>   <!-- /#search-location -->
+                        
+
+                          </div><!-- /.tab-content -->
+                        </div><!-- /.search-box -->
+                      </div><!-- /.container -->
+                    </div><!-- /.search-box-inner -->
+                    <div class="background-image"><img class="opacity-20" src="home/images/assets/searchbox-bg.jpg"></div>
+                  </div>
+                  </div>
+                  <!-- end Search Box -->
+              
+                            <!-- Page Content -->
+    
+                      <div class="container">
+                        <header class="section-title"><h2>Our Services</h2></header>
+                        <div class="row">
+                          <div class="col-md-4 col-sm-4">
+                            <div class="feature-box equal-height">
+                              <figure class="icon"><i class="fa fa-folder"></i></figure>
+                              <aside class="description">
+                                <header><h3>Wide Range of Properties</h3></header>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <a href="properties-listing.html" class="link-arrow">Read More</a>
+                              </aside>
+                            </div><!-- /.feature-box -->
+                          </div><!-- /.col-md-4 -->
+                          <div class="col-md-4 col-sm-4">
+                            <div class="feature-box equal-height">
+                              <figure class="icon"><i class="fa fa-users"></i></figure>
+                              <aside class="description">
+                                <header><h3>Wide Range of Services</h3></header>
+                                <p>Aliquam gravida magna et fringilla convallis. Pellentesque habitant morbi </p>
+                                <a href="agents-listing.html" class="link-arrow">Read More</a>
+                              </aside>
+                            </div><!-- /.feature-box -->
+                          </div><!-- /.col-md-4 -->
+                          <div class="col-md-4 col-sm-4">
+                            <div class="feature-box equal-height">
+                              <figure class="icon"><i class="fa fa-money"></i></figure>
+                              <aside class="description">
+                                <header><h3>Best Price Guarantee!</h3></header>
+                                <p>Phasellus non viverra tortor, id auctor leo. Suspendisse id nibh placerat</p>
+                                <a href="#" class="link-arrow">Read More</a>
+                              </aside>
+                            </div><!-- /.feature-box -->
+                          </div><!-- /.col-md-4 -->
+                        </div><!-- /.row -->
+                      </div><!-- /.container -->
+                    </section><!-- /#our-services -->
+                    
+                    <section id="advertising" class="block">
+                      <div class="container">
+                        <a href="submit.html">
+                          <div class="banner">
+                            <div class="wrapper">
+                              <span class="title">Do you want your property to be listed here?</span>
+                              <span class="submit">Submit it now! <i class="fa fa-plus-square"></i></span>
+                            </div>
+                          </div><!-- /.banner-->
+                        </a>
+                      </div>
+                    </section><!-- /#adveritsing-->
+ 
+    <!-- end Page Content -->
+              
+              
+              
+              
+              
+              </div>
+              <!-- Content  -->
+ </div>    <!--Wrapper -->    
+                       <!-- Footer -->
+            <div ng-include="'footer.html'"></div>
+          
+                   <!--Footer -->
+
+
+           
+        <script src="lib/libs.js"></script>
+        <script src="home/js/home.js"></script>
+        <script src="home/templates/templates.js"></script>
+
+
+
+</body>
+</html>
