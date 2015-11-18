@@ -1,0 +1,141 @@
+
+   <div class="col-md-12">
+     <h3 class="box-title">Settings for {{unitname}} </h3>
+   </div>
+    <div class="col-md-4">
+          <div class="box box-default color-palette-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Rental Payment Terms</h3>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                   <div class="col-md-12">
+                      <div class="form-group">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="or1" id="rd1" ng-model="settings.paymentterms" value="weekly" checked>
+                          Weekly
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="or1" id="rd2" ng-model="settings.paymentterms" value="monthly">
+                         Monthly
+                        </label>
+                      </div>
+                       <div class="radio">
+                        <label>
+                          <input type="radio" name="or1" id="rd3" ng-model="settings.paymentterms" value="quarterly">
+                          Quarterly
+                        </label>
+                      </div>
+                       <div class="radio">
+                        <label>
+                          <input type="radio" name="or1" id="rd4"  ng-model="settings.paymentterms" value="halfyearly">
+                          Half Yearly
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="or1" id="rd5"  ng-model="settings.paymentterms" value="yearly">
+                          Yearly
+                        </label>
+                      </div>
+                      
+                    </div>
+                   </div>
+              </div><!-- /.row -->
+             
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+      </div>   
+
+
+            <div class="col-md-4">
+          <div class="box box-default color-palette-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Unit Deposit Amount </h3>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                   <div class="col-md-12">
+                   <label>Same as Rent Amount</label>
+                       <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or2" id="rd6" ng-model="depositamount" ng-change="calc=calcRentDeposit">
+                        </span>
+                        <input type="text" class="form-control" ng-model="deposit.amount" disabled>
+                      </div><!-- /input-group -->
+                        <label>% of Rent Amount </label>
+                       <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or2" id="rd7" ng-model="depositrentpercentage" ng-change="calc=calcRentDeposit">
+                        </span>
+                        <input type="number" class="form-control" ng-model="percentage">
+                        <input type="text" class="form-control">
+                      </div><!-- /input-group -->
+                        <label>Fixed Amount</label>
+                       <div class="input-group">                    
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or2" id="rd8" ng-model="deposit.amount" value="depositfixedamount">
+                        </span>
+                        <input type="text" class="form-control">
+                      </div><!-- /input-group -->
+                     
+                   </div>
+              </div><!-- /.row -->
+             
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+      </div>  
+
+
+
+      <div class="col-md-4">
+          <div class="box box-default color-palette-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">On Tenant  Check in  ? </h3>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                   <div class="col-md-12">
+                      <div class="form-group">
+                       <label>Post Rent Amount Only  </label>
+                       <div class="input-group">                    
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or3" id="rd9" value="rentonly">
+                        </span>
+                        <input type="text" class="form-control" disabled>
+                      </div><!-- /input-group -->
+ 
+                        <label>Post Rent And Deposit Amount </label>
+                       <div class="input-group">                    
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or3" id="rd10" value="rentanddeposit">
+                        </span>
+                        <input type="text" class="form-control">
+                      </div><!-- /input-group -->
+
+                       <label>Fixed Amount</label>
+                       <div class="input-group">                    
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or3" id="rd11" value="checkinfixedamount">
+                        </span>
+                        <input type="text" class="form-control" ng-model="tenantcheckinfixedamount">
+                      </div><!-- /input-group -->
+                      
+                    </div>
+                   </div>
+              </div><!-- /.row -->
+             
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+      </div>    
+ 
+
+   <div class="col-md-12">
+     <button class="btn btn-warning">Save</button>
+     <button class="btn btn-success">Cancel</button>
+   </div>
+
+   <pre>{{settings.paymentterms}}</pre>

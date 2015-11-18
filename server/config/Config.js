@@ -13,7 +13,7 @@ Config.Tenant={
              "Homepage":"/Tenant.html",
              "usercategory":"tenant",
              "allowedPath":'["/properties","/units"]',
-             "userRole" : {
+             "userrole" : {
                 "id" : 2,
                 "role" : "tenant"
                     }

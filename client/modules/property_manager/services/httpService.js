@@ -2,6 +2,8 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 
  var url='/web/propertymanager';
 	var data = {
+
+		/*  Property */
          propertyExist: function(plotname) {
 			var promise = $http.get(url+ '/property/check/'+plotname)
 			return promise;
@@ -10,8 +12,6 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 			var promise = $http.get(url+ '/property')
 			return promise;
 		 },
-
-		 
 
          addProperty: function(details) {
 			var promise =  $http.post(url + '/property',details); 
@@ -29,6 +29,61 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 			var promise =  $http.delete(url + '/property/'+property); 
 			return promise;
 		 },
+
+		 /*  Units  */
+
+		ListAllUnits: function() {
+			var promise = $http.get(url+ '/Unit/All')
+			return promise;
+		 },
+        ListPropertyUnits: function(propertyid) {
+			var promise = $http.get(url+ '/Unit/'+propertyid)
+			return promise;
+		 },
+
+
+		 UnitExist: function(unitname) {
+			var promise = $http.get(url+ '/Unit/check/'+unitname)
+			return promise;
+		 },
+	
+         addUnit: function(details) {
+			var promise =  $http.post(url + '/Unit',details); 
+			return promise;
+		 },
+         getUnitDetails: function(details) {
+			var promise =  $http.get(url + '/Unit'+details); 
+			return promise;
+		 },
+         updateUnit: function(details) {
+			var promise =  $http.put(url + '/Unit',details); 
+			return promise;
+		 },
+         deleteUnit: function(unitname) {
+			var promise =  $http.delete(url + '/Unit'+unitname); 
+			return promise;
+		 },
+
+	
+            checkTenantContact:function (contact) {
+		     return $http.get(url + '/Tenant/contact/'+ contact);
+            },
+            createTenant:function (tenant) {
+            	console.log(tenant)
+		     return $http.post(url + '/Tenant',tenant); 
+            },
+             tenantLookup:function (searchid,lookup) {
+		     return $http.get(url + '/Tenant/lookup/?searchid='+searchid+'&lookup='+lookup);
+            },
+            tenantUpdate:function (details) {
+		     return $http.put(url + '/Tenant',details); 
+            },
+           tenantList:function () {
+		     return $http.get(url + '/Tenant'); 
+            },
+            DeleteTenant:function (tenantid) {
+		     return $http.delete(url + '/Tenant/'+tenantid); 
+            },
 
               }
 	return data;

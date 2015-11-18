@@ -2,9 +2,9 @@
               <!-- MAP & BOX PANE -->
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Property</h3>
+                  <h3 class="box-title">Tenants</h3>
                   <div class="box-tools pull-right">
-                   <button class="btn btn-box-tool"  ><i class="fa fa-plus" ng-click="addProperty()">  Add</i></button>
+                   <button class="btn btn-box-tool"  ><i class="fa fa-plus" ng-click="addTenant()">  Add</i></button>
                   
                 
                   </div>
@@ -14,7 +14,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">List of Your Properties     #{{properties.length}}</h3>
+                  <h3 class="box-title">List of Your Tenants     #{{tenants.length}}</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search"  ng-model="search">
@@ -28,21 +28,21 @@
                   <table class="table table-hover">
                     <tr>
                       <th>#</th>
-                      <th>Name</th>
-                      <th>Location</th>
-                      <th>Type</th>
-                      <th>Status</th>
+                      <th>Names</th>
+                      <th>ID</th>
+                      <th>Telephone</th>
+                      <th>Email</th>
                       <th></th>
                       <th></th>
                       <th></th>
                      <th>Action</th>
                     </tr>
-                   <tr dir-paginate="property in properties | orderBy:'firstname' | filter:search | itemsPerPage:3 " pagination-id="prop">
+                   <tr dir-paginate="tenant in tenants | orderBy:'firstname' | filter:search | itemsPerPage:3 " pagination-id="prop">
                       <td>{{$index + 1 }}</td>
-                      <td>{{property.name}}</td>
-                      <td>{{property.location}}</td>         
-                      <td>{{property.type}}</td>
-                      <td>For  {{property.status}} </td>
+                      <td>{{tenant.names}}</td>
+                      <td>{{tenant._id}}</td>         
+                      <td>{{tenant.contact}}</td>
+                      <td>{{tenant.email}} </td>
                       <td><a ng-href="#/units/{{property.name}}/{{property._id}}" class="btn btn-sm btn-primary">View Units</a></td>
                       <td><a href="#/photos" class="btn btn-sm btn-warning">View photos</a></td>
                       <td><a href="#/amenities" class="btn btn-sm btn-success">View Amenities</a></td>

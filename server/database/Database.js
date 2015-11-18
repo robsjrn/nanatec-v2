@@ -31,7 +31,7 @@ MongoClient.connect(config.DatabaseUrl, function(err, database) {
           db.collection('property').ensureIndex({loc: "2d"}, { w:1}, function(err, result) {
            if(err) { console.dir(err);}
           });
-		  db.collection('House').ensureIndex({"plot.loc": "2d"}, { w:1}, function(err, result) {
+		  db.collection('units').ensureIndex({"plot.loc": "2d"}, { w:1}, function(err, result) {
            if(err) { console.dir(err);}
 		  });
         
@@ -303,7 +303,7 @@ exports.GetplotDetails = function(req, res) {
 
 
 
-/* House Stuff Begin */
+/* Unit Stuff Begin */
 
 
 var updatenohse=function (landlordid,no,Amount ,callback){
@@ -316,7 +316,7 @@ var updatenohse=function (landlordid,no,Amount ,callback){
 };
 
 exports.CheckHseExists = function(req, res) {
-   db.collection('House', function(err, collection) {
+   db.collection('units', function(err, collection) {
   collection.findOne({$and: [ {"number":req.query.hsename},{"plot.Plotname" : req.query.plotname}]},{_id:0},function(err, item){
   if(item){ res.status(200).json({exist: true,data:item});  }
    else { res.status(200).json({exist: false}); };
@@ -325,22 +325,37 @@ exports.CheckHseExists = function(req, res) {
 };
 
 
-exports.CreateHouse = function(req, res) {
-db.collection('House', function(err, collection) {
-collection.insert(req.body, function(err, item) {
-   if (err) {DbError(res) ;}
-   else{updatenohse(req.user._id,1,req.body.amount,function(ok,status)
-	   {if (ok){
-	      res.status(200).json({success: "Succesfull"});
-       }	
-   });}
 
+
+exports.PropertyUnits = function(req, res) {
+ db.collection('units', function(err, collection) {
+     collection.find({"propertyid":req.params.propertyid}).toArray(function(err, item) {
+	   if(item){
+	  // 	console.log(item);
+	   	res.status(200).json({'units':item});
+
+	   }else{DbError(res) ;}
 });
 });
 };
 
+
+	exports.createunit = function(req, res) {
+	db.collection('units', function(err, collection) {
+	collection.insert(req.body, function(err, item) {
+	   if (err) {DbError(res) ;}
+	   else{updatenohse(req.user.ownerid,1,req.body.amount,function(ok,status)
+		   {if (ok){
+		      res.status(200).json({success: "Succesfull"});
+	       }	
+	   });}
+
+	});
+	});
+	};
+
 exports.Updatehse= function(req, res) {
-db.collection('House', function(err, collection) {
+db.collection('units', function(err, collection) {
 collection.update({$and: [ {"number":req.body.number},{"plot.Plotname" : req.body.plot.Plotname}]},{$set:req.body}, function(err, item) {
    if (err) {console.log(err);DbError(res) ;}
    else{updatenohse(req.user._id,-1,-req.body.amount,function(ok,status)
@@ -355,8 +370,8 @@ collection.update({$and: [ {"number":req.body.number},{"plot.Plotname" : req.bod
 
 
 
-exports.GetLandlordHouse = function(req, res) {
- db.collection('House', function(err, collection) {
+exports.GetLandlordUnits = function(req, res) {
+ db.collection('units', function(err, collection) {
      collection.find({"landlordid":req.user._id},{_id:0}).toArray(function(err, item) {
 	   if(item){res.status(200).json(item);;
 	   }else{DbError(res) ;}
@@ -366,7 +381,7 @@ exports.GetLandlordHouse = function(req, res) {
 
 
  exports.deleteHse = function(req, res) {
-  db.collection('House', function(err, collection) {
+  db.collection('units', function(err, collection) {
    collection.remove({$and:[{"landlordid":req.user._id},{"number" : req.params.hsename}]}, function(err, item) {
    if (err) {DbError(res) ;}
    else{updatenohse(req.user._id,-1,-req.body.amount,function(ok,status)
@@ -414,11 +429,15 @@ exports.GetLandlordHouse = function(req, res) {
 
 
 				exports.CreateTenant = function(req, res) {
+
 				req.body.contact="+254"+req.body.contact;
-				req.body.userRole=config.Tenant.userrole;
-				req.body.Landlordid=req.user.landlordid;
+				req.body.userrole=config.Tenant.userrole;
+				req.body.Homepage=config.Tenant.Homepage;
+				req.body.allowedPath=config.Tenant.allowedPath;
+				req.body.usercategory=config.Tenant.usercategory;
 				 bcrypt.hash(req.body._id, 10, function(err, hash) {
 					req.body.password=hash;
+
 						db.collection('user', function(err, collection) {
 						collection.insert(req.body, function(err, item) {
 						   if (err) {		 
@@ -470,8 +489,8 @@ exports.GetLandlordHouse = function(req, res) {
 		exports.TenantList = function(req, res) {
 
 		 db.collection('user', function(err, collection) {
-		 collection.find({$and: [ {"Landlordid":req.user._id},{"role" : "tenant"}]}).toArray( function(err, item){
-		  if(item){res.send(item);}
+		 collection.find({$and: [ {"propertymanagerid":req.user._id},{"userrole.role" : "tenant"}]}).toArray( function(err, item){
+		  if(item){res.status(200).json({'tenants':item});}
 		  if (err) {DbError(res) ;}
 
 		});
@@ -485,7 +504,7 @@ exports.GetLandlordHouse = function(req, res) {
 
 		exports.deleteTenant = function(req, res) {
 		  db.collection('user', function(err, collection) {
-		   collection.remove({$and:[{"Landlordid":req.user._id},{"_id" : req.params.tenantid}]}, function(err, item) {
+		   collection.remove({$and:[{"propertymanagerid":req.user._id},{"_id" : req.params.tenantid}]}, function(err, item) {
 		   if (err) {DbError(res) ;}
 		   else{ res.status(200).json({success: "Succesfull"}) ;}	
 		   });
@@ -570,7 +589,7 @@ exports.GetLandlordHouse = function(req, res) {
 		});
 		});
 		};
-
+/*
        	exports.createunit = function(req, res) {
 		db.collection('properties', function(err, collection) {
 		collection.insert(req.body, function(err, item) {
@@ -582,7 +601,7 @@ exports.GetLandlordHouse = function(req, res) {
 		});
 		};
 
-		
+	*/	
 
     
 	exports.updatepropertyMaster= function(req, res) {

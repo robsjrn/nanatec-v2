@@ -48,9 +48,17 @@ $httpProvider.interceptors.push('authInterceptor');
          templateUrl : 'Editproperty.html',
           controller  : 'EditPropertyCtrl'
         })
-       .when('/units', {
+       .when('/units/:propertyname/:propertyid', {
          templateUrl : 'property_manager/views/units.html',
           controller  : 'unitCtrl'
+        })
+       .when('/units-settings/:unitname/:unitid/:amount', {
+         templateUrl : 'unit-settings.html',
+          controller  : 'unitSettingsCtrl'
+        })
+       .when('/tenants', {
+         templateUrl : 'property_manager/views/tenants.html',
+          controller  : 'tenantsCtrl'
         })
        .when('/singletrxn', {
          templateUrl : 'property_manager/views/singletrxn.html',
@@ -85,10 +93,10 @@ propertymanager.run(['$rootScope', '$location', '$window','$route','editableOpti
    var paths= JSON.parse($window.sessionStorage.allowedpath);
   // console.log("next " + next);
 
-  // console.log("paths " + paths);
+   console.log("paths " + paths);
    var nextPath = $location.path();
  //  console.log("next path  " + nextPath);
-           function findById(source, id) {
+         /*  function findById(source, id) {
                       for (var i = 0; i < source.length; i++) {
                         if (source[i] === id) {
                           return true;
@@ -105,7 +113,7 @@ propertymanager.run(['$rootScope', '$location', '$window','$route','editableOpti
         //  event.preventDefault();
       }
    
-  
+    */
 
 
 
