@@ -61,19 +61,19 @@ var express = require('express')
 
 
         //Service that dont Require Login
-          router.post('/ServiceRegistration',DatabaseConn.ServiceRegistration); 
-          router.post('/ServiceListing',DatabaseConn.ServiceListing);
-		  router.post('/VacantRentalListing',DatabaseConn.VacantRentalListing);
+        //  router.post('/ServiceRegistration',DatabaseConn.ServiceRegistration); 
+        //  router.post('/ServiceListing',DatabaseConn.ServiceListing);
+		//  router.post('/VacantRentalListing',DatabaseConn.VacantRentalListing);
 		  router.post('/CreateLandlord',DatabaseConn.CreateLandlord);
-          router.post('/Recoverpwd',DatabaseConn.Recoverpwd);
+        //  router.post('/Recoverpwd',DatabaseConn.Recoverpwd);
           router.post('/CheckidExists',DatabaseConn.idExists);
          // router.post('/CheckPlotExist',DatabaseConn.CheckPlotExist);      moved to landlord routes
 		 // router.post('/CheckHseNoExists',DatabaseConn.CheckHseNoExists);
           router.post('/CheckPhonenumberExists',DatabaseConn.phonenumber);
-          router.get('/Viewmail',ensureAuthenticated,DatabaseConn.Viewmail);
-          router.post('/Mail',ensureAuthenticated,DatabaseConn.CreateMail);
-		  router.post('/CheckPwd',ensureAuthenticated,DatabaseConn.CheckPwd);
-		  router.post('/ChangePwd',ensureAuthenticated,DatabaseConn.ChangePwd);
+       //   router.get('/Viewmail',ensureAuthenticated,DatabaseConn.Viewmail);
+       //   router.post('/Mail',ensureAuthenticated,DatabaseConn.CreateMail);
+		//  router.post('/CheckPwd',ensureAuthenticated,DatabaseConn.CheckPwd);
+		//  router.post('/ChangePwd',ensureAuthenticated,DatabaseConn.ChangePwd);
 
 
 module.exports = router

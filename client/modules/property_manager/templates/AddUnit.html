@@ -1,0 +1,67 @@
+       <div>
+            <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Add Unit </h3>
+                
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                      <form role="form">
+                         <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Unit Name</label>
+                              <input type="text" class="form-control" placeholder="Name"  ng-model="unit.name">
+                           </div>
+                           
+                           <div class="form-group">
+                              <label>Amount</label>
+                              <input type="number" class="form-control" placeholder="Amount" ng-model="unit.amount">
+                           </div>
+
+                           <div class="form-group">
+                              <label>Currency</label>
+                             <select class="form-control" ng-model="unit.currency">
+                                <option value="ksh">Kenya Shilling (Ksh)</option>
+                                <option value="usd" >US Dollars  ($)</option>
+                               
+                              </select>
+                           </div>
+                           
+                         <div class="form-group">
+                              <label>Unit Type</label>
+                              <select class="form-control" ng-model="unit.type">
+                                <option value="Bed Sitter">Bed Sitter</option>
+                                <option value="One Bedroom" >One Bedroom</option>
+                                 <option value="Two Bedroom" >Two Bedroom</option>
+                                 <option value="Three Bedroom" >Three Bedroom</option>
+                              </select>
+                             
+                            </div>     
+                       </div>
+                      
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Size</label>
+                              <input type="number" class="form-control" placeholder="Size" ng-model="unit.size">
+                           </div>
+
+
+                            <div class="form-group">
+                              <label>Unit Description </label>
+                              <textarea class="form-control" rows="3" placeholder="Description ..."  ng-model="unit.description"></textarea>
+                            </div>
+
+                                 
+                        </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                  Visit <a href="https://www.nana.com/">Select2 documentation</a> for more examples and information about the plugin.
+                </div>
+            </div><!-- /.box -->
+
+            <div class="ngdialog-buttons">
+                <button type="button" class="ngdialog-button ngdialog-button-error" ng-click="closeThisDialog()">Close</button>
+                <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="confirm(unit)">Save</button>
+    
+             </div>

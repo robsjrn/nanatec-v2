@@ -1,0 +1,54 @@
+
+            <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Add Tenants</h3>
+                
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                      <form role="form" name="tform" novalidate> 
+
+							 <div class="col-md-4">								
+	      					     <label for="tenantnames">Tenant Names</label>
+								   <input type="text" class="form-control" placeholder="Tenant Names" id="tenantnames" name="tenantnames" ng-model="Tenant.names" ng-disabled=disableComponents required>
+								   <label for="idno" >Id Number</label>
+								   <input type="text" class="form-control" placeholder="Id Number" id ="idno" ng-model="Tenant._id" ng-blur="CheckidExists(Tenant._id)" ng-disabled=disableComponents required/>
+								   <div ng-show="userExist" class="alert alert-danger"><strong>ID Already Used <a href="/tenant/{{tdata.names}} ">{{tdata.names}}</a></strong> </div>
+								   <label for="occp">Occupation</label>
+								   <textarea class="form-control" rows="2" id="desc" ng-model="Tenant.occupation" ng-disabled=disableComponents></textarea>
+								</div>
+							  <div class="col-md-4">
+							     <label for="cont">Contacts</label>
+								 <span ng-show="ContactSpinner"><i class="fa fa-refresh fa-spin"></i></span>
+								   <input type="number" class="form-control" placeholder="Contact e.g 0721000111" name ="cont" ng-model="Tenant.contact" id="contact" ng-blur="CheckPhonenumberExists()" ng-disabled=disableComponents required />								 
+								   <div ng-show="tform.cont.$error.minlength">Should be atleast 10 Characters</div>
+								   <div ng-show="tform.cont.$error.maxlength">Cannot be more than 10 Characters</div>
+								   <div ng-show="contactExist" class="alert alert-danger"><strong>Contact Already Used <a href="/tenant/{{tdata.names}} ">{{tdata.names}}</a></strong> </div>
+								  <label for="Email">Email</label>
+								   <input type="Email" class="form-control" name="uEmail" placeholder="Email"  ng-model="Tenant.email" ng-disabled=disableComponents required/>
+								   <div ng-show ="tform.uEmail.$dirty && tform.uEmail.$invalid" ><span ng-show="tform.uEmail.$error.email">Email not Valid</span>
+								   <span ng-show="tform.uEmail.$error.required">Email Required</span></div>
+							      <label for="plw">Location of Work</label>
+								   <input type="text" class="form-control" placeholder="Place of Work"  ng-model="Tenant.worklocation" ng-disabled=disableComponents required/>
+							  
+                                  </div>  
+
+                                  <div class="col-md-4">	
+                                    <div class="form-group">
+								      <input type="file" class="btn btn-error " ng-file-model="Tenant.image" >Upload Image </input>
+								    </div>
+
+                                  </div>    
+								 </form>  
+						</div>
+					</div>
+					<div class="box-footer">
+                  Visit <a href="https://www.nana.com/">Select2 documentation</a> for more examples and information about the plugin.
+                </div>
+				</div>
+				 <div class="ngdialog-buttons">
+                <button type="button" class="ngdialog-button ngdialog-button-error" ng-click="closeThisDialog()">Close</button>
+                <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="confirm(Tenant)">Save</button>
+    
+             </div>
+				

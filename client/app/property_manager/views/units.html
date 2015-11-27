@@ -41,10 +41,10 @@
                       <td>{{unit.amount}}</td>         
                       <td>{{unit.type}}</td>
                       <td>
-                          <span ng-if="unit.booked"><label class="label-primary">Booked </label></span>
-                          <span ng-if="!unit.booked"><label class="label-primary">Not Booked </label></span> 
+                          <span ng-if="unit.occupationStatus=='occupied'"><label class="label-primary">Occupied </label></span>
+                          <span ng-if="unit.occupationStatus=='vacant'"><label class="label-warning">Vacant</label></span> 
                        </td>
-                       <td><a ng-href="#/units-settings/{{unit.name}}/{{unit._id}}/{{unit.amount}}"class="btn btn-success">Settings </a></td>
+                       <td><a  ng-if="unit.type==!sale" ng-href="#/units-settings/{{unit.name}}/{{unit._id}}/{{unit.amount}}"class="btn btn-success">Settings </a></td>
                       <td><a href="#/Units-photos" class="btn btn-error">Add Photos</a></td>
                       <td style="width: 20%;">
 														<a ng-click="viewProperty(property)" class="table-link">

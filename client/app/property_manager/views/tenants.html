@@ -32,34 +32,41 @@
                       <th>ID</th>
                       <th>Telephone</th>
                       <th>Email</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
+                      <th>Status</th>
+                      <th>Transactions</th>
                      <th>Action</th>
                     </tr>
-                   <tr dir-paginate="tenant in tenants | orderBy:'firstname' | filter:search | itemsPerPage:3 " pagination-id="prop">
+                   <tr dir-paginate="tenant in tenants | orderBy:'tenant.names' | filter:search | itemsPerPage:3 " pagination-id="prop">
                       <td>{{$index + 1 }}</td>
                       <td>{{tenant.names}}</td>
                       <td>{{tenant._id}}</td>         
-                      <td>{{tenant.contact}}</td>
-                      <td>{{tenant.email}} </td>
-                      <td><a ng-href="#/units/{{property.name}}/{{property._id}}" class="btn btn-sm btn-primary">View Units</a></td>
-                      <td><a href="#/photos" class="btn btn-sm btn-warning">View photos</a></td>
-                      <td><a href="#/amenities" class="btn btn-sm btn-success">View Amenities</a></td>
+                      <td><a ng-click="sendSms()">{{tenant.contact}}<a></td>
+                      <td><a ng-click="sendMail()">{{tenant.email}}</a> </td>
+                      <td>
+                          <span ng-if="tenant.rented"><label class="label-primary">Rented </label></span>
+                          <span ng-if="!tenant.rented"><label class="label-warning">Not Rented </label></span> 
+
+                      </td>
+                      <td><a ng-href="#">View Transactions</a></td>
+                     <td>
+                          <span ng-if="tenant.rented"><a ng-href="#/checkin/{{tenant._id}}" >Check-Out</a></span>
+                          <span ng-if="!tenant.rented"><a ng-href="#/checkin/{{tenant._id}}" >Check-In</a></span> 
+
+                      </td>
                       <td style="width: 20%;">
-														<a ng-click="viewProperty(property)" class="table-link">
+														<a ng-click="viewTenant(tenant)" class="table-link">
 															<span class="fa-stack">
 																<i class="fa fa-square fa-stack-2x"></i>
 																<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
 															</span>
 														</a>
-														<a ng-click="editproperty(property)" class="table-link">
+														<a ng-click="edittenant(tenant)" class="table-link">
 															<span class="fa-stack">
 																<i class="fa fa-square fa-stack-2x"></i>
 																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 															</span>
 														</a>
-														<a href="#" class="table-link danger">
+														<a ng-click="deletetenant(tenant)" class="table-link danger">
 															<span class="fa-stack">
 																<i class="fa fa-square fa-stack-2x"></i>
 																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

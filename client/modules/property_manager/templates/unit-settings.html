@@ -6,6 +6,7 @@
           <div class="box box-default color-palette-box">
             <div class="box-header with-border">
               <h3 class="box-title">Rental Payment Terms</h3>
+              <span class="pull-right"><b>{{settings.paymentterms}}</b></span>
             </div>
             <div class="box-body">
               <div class="row">
@@ -54,34 +55,38 @@
             <div class="col-md-4">
           <div class="box box-default color-palette-box">
             <div class="box-header with-border">
-              <h3 class="box-title">Unit Deposit Amount </h3>
+              <h3 class="box-title">Unit Deposit Amount  </h3>
+              <span class="pull-right"><b>{{deposit.amount}}</b></span>
             </div>
             <div class="box-body">
               <div class="row">
                    <div class="col-md-12">
-                   <label>Same as Rent Amount</label>
+                   <label>Same as Rent Amount  </label>
                        <div class="input-group">
                         <span class="input-group-addon">
-                          <input type="radio"  name="or2" id="rd6" ng-model="depositamount" ng-change="calc=calcRentDeposit">
+                          <input type="radio"  name="or2" id="rd6" ng-model="depositamount" value="depositamount" ng-click="calcRentDeposit(depositamount)">
                         </span>
-                        <input type="text" class="form-control" ng-model="deposit.amount" disabled>
+                        <input type="number" class="form-control" ng-model="rentamount" disabled>
                       </div><!-- /input-group -->
                         <label>% of Rent Amount </label>
                        <div class="input-group">
+                        
+                        <input type="number" class="form-control" ng-model="percentage" placeholder="% value">
                         <span class="input-group-addon">
-                          <input type="radio"  name="or2" id="rd7" ng-model="depositrentpercentage" ng-change="calc=calcRentDeposit">
+                          <input type="radio"  name="or2" id="rd7" ng-model="depositrentpercentage" value="depositrentpercentage" ng-click="calcRentDeposit(depositrentpercentage)">
                         </span>
-                        <input type="number" class="form-control" ng-model="percentage">
-                        <input type="text" class="form-control">
-                      </div><!-- /input-group -->
-                        <label>Fixed Amount</label>
-                       <div class="input-group">                    
-                        <span class="input-group-addon">
-                          <input type="radio"  name="or2" id="rd8" ng-model="deposit.amount" value="depositfixedamount">
-                        </span>
-                        <input type="text" class="form-control">
                       </div><!-- /input-group -->
                      
+                        <label>Fixed Amount</label>
+                       <div class="input-group">                    
+                        
+                        <input type="number" class="form-control" ng-model="fixedamount" placeholder="Fixed Amount">
+                        <span class="input-group-addon">
+                          <input type="radio"  name="or2" id="rd8" ng-model="depositfixedamount" value="depositfixedamount" ng-click="calcRentDeposit(depositfixedamount)">
+
+                        </span>
+                      </div><!-- /input-group -->
+                       
                    </div>
               </div><!-- /.row -->
              
@@ -95,6 +100,7 @@
           <div class="box box-default color-palette-box">
             <div class="box-header with-border">
               <h3 class="box-title">On Tenant  Check in  ? </h3>
+               <span class="pull-right"><b>{{settings.checkinamount}}</b></span>
             </div>
             <div class="box-body">
               <div class="row">
@@ -103,25 +109,26 @@
                        <label>Post Rent Amount Only  </label>
                        <div class="input-group">                    
                         <span class="input-group-addon">
-                          <input type="radio"  name="or3" id="rd9" value="rentonly">
+                          <input type="radio"  name="or3" id="rd9" value="rentonly" ng-model="rentonly" ng-click="calcCheckinAmount(rentonly)">
                         </span>
-                        <input type="text" class="form-control" disabled>
+                        <input type="number" class="form-control" ng-model="settings.checkinamount" disabled>
                       </div><!-- /input-group -->
  
                         <label>Post Rent And Deposit Amount </label>
                        <div class="input-group">                    
                         <span class="input-group-addon">
-                          <input type="radio"  name="or3" id="rd10" value="rentanddeposit">
+                          <input type="radio"  name="or3" id="rd10" value="rentanddeposit" ng-model="rentanddeposit" ng-click="calcCheckinAmount(rentanddeposit)">
                         </span>
-                        <input type="text" class="form-control">
+                        <input type="number" class="form-control" disabled ng-model="settings.checkinamount">
                       </div><!-- /input-group -->
 
                        <label>Fixed Amount</label>
                        <div class="input-group">                    
-                        <span class="input-group-addon">
-                          <input type="radio"  name="or3" id="rd11" value="checkinfixedamount">
+                      
+                        <input type="number" class="form-control" ng-model="tenantcheckinfixedamount" >
+                          <span class="input-group-addon">
+                          <input type="radio"  name="or3" id="rd11" value="checkinfixedamount" ng-model="checkinfixedamount" ng-click="calcCheckinAmount(checkinfixedamount)">
                         </span>
-                        <input type="text" class="form-control" ng-model="tenantcheckinfixedamount">
                       </div><!-- /input-group -->
                       
                     </div>
@@ -134,8 +141,8 @@
  
 
    <div class="col-md-12">
-     <button class="btn btn-warning">Save</button>
+     <button class="btn btn-warning" ng-click="update()">Save</button>
      <button class="btn btn-success">Cancel</button>
    </div>
 
-   <pre>{{settings.paymentterms}}</pre>
+  

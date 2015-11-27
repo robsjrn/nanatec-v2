@@ -60,6 +60,10 @@ $httpProvider.interceptors.push('authInterceptor');
          templateUrl : 'property_manager/views/tenants.html',
           controller  : 'tenantsCtrl'
         })
+       .when('/checkin/:tenantid', {
+         templateUrl : 'checkin.html',
+          controller  : 'checkinCtrl'
+        })
        .when('/singletrxn', {
          templateUrl : 'property_manager/views/singletrxn.html',
           controller  : 'singletrxnCtrl'

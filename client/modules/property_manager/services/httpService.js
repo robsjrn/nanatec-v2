@@ -59,8 +59,17 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 			var promise =  $http.put(url + '/Unit',details); 
 			return promise;
 		 },
+         UpdateUnitSettings: function(details) {
+			var promise =  $http.put(url + '/UpdateUnitSettings',details); 
+			return promise;
+		 },
+		 
          deleteUnit: function(unitname) {
 			var promise =  $http.delete(url + '/Unit'+unitname); 
+			return promise;
+		 },
+		  vacantUnits: function() {
+			var promise =  $http.get(url + '/vacantUnits'); 
 			return promise;
 		 },
 

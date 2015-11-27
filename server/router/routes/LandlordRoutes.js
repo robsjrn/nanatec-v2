@@ -35,6 +35,7 @@ var express = require('express'),
 						var decoded = jwt.decode(req.headers.token, tokenSecret);
 
 						   req.user=decoded.user;
+            
 						  return next();
 					  }
 					  catch (e)
@@ -69,11 +70,12 @@ var express = require('express'),
            
 			 function getrequest(req, res, next) {
 
+
                      if (req.user.userrole.role==='admin'){
-                     	req.body.ownerid=req.user._id;
+                     	req.body.propertymanagerid=req.user._id;
 
                      }else {   
-                     	req.body.ownerid=req.user.propertymanagerid;
+                     	req.body.propertymanagerid=req.user.propertymanagerid;
 
                      }
 
@@ -95,10 +97,14 @@ var express = require('express'),
 
    router.get('/Unit/check/:data',DatabaseConn.CheckHseExists);  // Check  unit no Exist
    router.post('/Unit',ensureAuthenticated,postrequest,DatabaseConn.createunit);   // create a unit
-   router.put('/Unit',ensureAuthenticated,DatabaseConn.Updatehse);  // update a unit
+    router.put('/Unit',ensureAuthenticated,DatabaseConn.UpdateUnit);  // update a unit
+   router.put('/UpdateUnitSettings',ensureAuthenticated,DatabaseConn.UpdateUnitSettings);  // update a unit Settings
    router.get('/Unit/:propertyid',ensureAuthenticated,DatabaseConn.PropertyUnits); 
    router.get('/Unit/All',ensureAuthenticated,DatabaseConn.GetLandlordUnits); 
    router.delete('/Unit/:unit',ensureAuthenticated,DatabaseConn.deleteHse);
+
+
+   router.get('/vacantUnits',ensureAuthenticated,getrequest,DatabaseConn.vacantunits);  // Check  unit no Exist
 
  /* 3   Tenant Management */
 
@@ -112,16 +118,6 @@ var express = require('express'),
 
 
 
-    router.post('/CreateLandlord',DatabaseConn.CreateLandlord);
-    router.get('/LandLordDetails',ensureAuthenticated,DatabaseConn.userDetails); 
-    router.get('/LandLordConfiguration',DatabaseConn.LandLordConfiguration);
-    router.get('/LandlordTenants',ensureAuthenticated,DatabaseConn.LandlordTenants);
-    router.post('/createTenant',ensureAuthenticated,DatabaseConn.CreateTenant);
-
-
-
-
-router.post('/hseLookup',ensureAuthenticated,DatabaseConn.hseLookup);
 
 			
 module.exports = router;
