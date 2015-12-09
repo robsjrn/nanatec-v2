@@ -43,14 +43,14 @@
                       <td><a ng-click="sendSms()">{{tenant.contact}}<a></td>
                       <td><a ng-click="sendMail()">{{tenant.email}}</a> </td>
                       <td>
-                          <span ng-if="tenant.rented"><label class="label-primary">Rented </label></span>
-                          <span ng-if="!tenant.rented"><label class="label-warning">Not Rented </label></span> 
+                          <span ng-if="tenant.occupationStatus"><label class="label-primary">Rented </label></span>
+                          <span ng-if="!tenant.occupationStatus"><label class="label-warning">Not Rented </label></span> 
 
                       </td>
                       <td><a ng-href="#">View Transactions</a></td>
                      <td>
-                          <span ng-if="tenant.rented"><a ng-href="#/checkin/{{tenant._id}}" >Check-Out</a></span>
-                          <span ng-if="!tenant.rented"><a ng-href="#/checkin/{{tenant._id}}" >Check-In</a></span> 
+                          <span ng-if="tenant.occupationStatus"><a ng-href="#/checkout/{{tenant._id}}" >Check-Out</a></span>
+                          <span ng-if="!tenant.occupationStatus"><a ng-href="#/checkin/{{tenant._id}}" >Check-In</a></span> 
 
                       </td>
                       <td style="width: 20%;">

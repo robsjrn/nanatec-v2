@@ -3,7 +3,7 @@ var express = require('express'),
     router = express.Router(),
     DatabaseConn = require('../../database/Database'),
     jwt = require('jwt-simple'),
-    Monthlyposting = require('../../jobs/producer'),
+   // Monthlyposting = require('../../jobs/producer'),
 	config=require('../../config/Config.js'),
      userRoles = require('../../config/routingConfig.js').userRoles,
      accessLevels = require('../../config/routingConfig.js').accessLevels;
@@ -108,7 +108,7 @@ var express = require('express'),
 
  /* 3   Tenant Management */
 
-   router.get('/Tenant/id/:idnumber',ensureAuthenticated,DatabaseConn.CheckTenantid);  //check tenant id
+   router.get('/Tenant/id/:idnumber',DatabaseConn.CheckTenantid);  //check tenant id
    router.get('/Tenant/contact/:contactnumber',ensureAuthenticated,DatabaseConn.checkTenantContact);   //check tenant contact
    router.post('/Tenant',ensureAuthenticated,postrequest,DatabaseConn.CreateTenant);   // create a Tenant
    router.get('/Tenant/lookup',ensureAuthenticated,DatabaseConn.Tenantlookup);  //check details
@@ -117,7 +117,7 @@ var express = require('express'),
    router.delete('/Tenant/:tenantid',ensureAuthenticated,DatabaseConn.deleteTenant);
 
 
-
+   router.post('/checkin',ensureAuthenticated,postrequest,DatabaseConn.checkin);
 
 			
 module.exports = router;

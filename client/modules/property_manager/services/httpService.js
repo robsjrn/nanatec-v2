@@ -73,7 +73,10 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 			return promise;
 		 },
 
-	
+	        getTenantDetails:function (tenantid) {
+		     return $http.get(url + '/Tenant/id/'+ tenantid);
+            },
+
             checkTenantContact:function (contact) {
 		     return $http.get(url + '/Tenant/contact/'+ contact);
             },
@@ -93,6 +96,12 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
             DeleteTenant:function (tenantid) {
 		     return $http.delete(url + '/Tenant/'+tenantid); 
             },
+
+
+            checkin: function(details) {
+			var promise =  $http.post(url + '/checkin',details); 
+			return promise;
+		    },
 
               }
 	return data;

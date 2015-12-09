@@ -60,6 +60,10 @@ $httpProvider.interceptors.push('authInterceptor');
          templateUrl : 'property_manager/views/tenants.html',
           controller  : 'tenantsCtrl'
         })
+       .when('/checkout/:tenantid', {
+         templateUrl : 'checkout.html',
+          controller  : 'checkoutCtrl'
+        })
        .when('/checkin/:tenantid', {
          templateUrl : 'checkin.html',
           controller  : 'checkinCtrl'
@@ -94,10 +98,10 @@ propertymanager.run(['$rootScope', '$location', '$window','$route','editableOpti
   $rootScope.$on("$locationChangeStart", function(event, next, current){
 
 
-   var paths= JSON.parse($window.sessionStorage.allowedpath);
+ //  var paths= JSON.parse($window.sessionStorage.allowedpath);
   // console.log("next " + next);
 
-   console.log("paths " + paths);
+  // console.log("paths " + paths);
    var nextPath = $location.path();
  //  console.log("next path  " + nextPath);
          /*  function findById(source, id) {

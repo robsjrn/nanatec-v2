@@ -83,7 +83,7 @@
 	    db.collection('user', function(err, collection) {
 	     collection.update({"_id":uid},{$addToSet:{plots : propertydet},  $inc:{noplots:1}},{safe:true}, function(err, item) {
 	        if (item) {
-				InsertMonthlyPosting(plot.Plotname);
+			//	InsertMonthlyPosting(plot.Plotname);
 				callback(null,true); 
 				}
 			else{callback(err,null)}
@@ -107,6 +107,7 @@
 
 
 	exports.AddProperty = function(req, res) {
+		console.log("got the equest ..");
 	  db.collection('property', function(err, collection) {
 	  collection.insert(req.body, function(err, item) {
 	      if (err) {
@@ -140,7 +141,7 @@
 	exports.GetAllProperty = function(req, res) {
 
 	   db.collection('property', function(err, collection) {
-	    collection.find({"ownerid":req.body.propertymanagerid}).toArray(function(err, item){
+	    collection.find({"propertymanagerid":req.body.propertymanagerid}).toArray(function(err, item){
 	  if(item){ res.status(200).json({'properties': item});}
 	  if (err) {DbError(res,err);}
 	    });
@@ -150,7 +151,6 @@
 
 
 	exports.Updateproperty = function(req, res) {
-	            console.log(req.body);
 	     var id =req.body._id;
 	            delete req.body["_id"];
 
@@ -306,7 +306,7 @@
 
 	var updatenohse=function (landlordid,no,Amount ,callback){
 	   db.collection('user', function(err, collection) {
-	    collection.update({"_id" : req.body.propertymanagerid},{ $inc:{expcMonthlyIncome:Amount,nohse:no}},{safe:true}, function(err, item) {
+	    collection.update({"_id" : landlordid},{ $inc:{expcMonthlyIncome:Amount,nohse:no}},{safe:true}, function(err, item) {
 	     if(err){console.log(err);return callback(false,err);}
 		  else{ return callback(true,null);}
 	      });
@@ -425,11 +425,13 @@
 	/* Tenant Stuff */
 
 			exports.CheckTenantid=function(req, res) {
+				console.log(req.params.idnumber);
 			 db.collection('user', function(err, collection) {
-			  collection.findOne({$and:[{"_id":req.params.idnumber},{"role" : "tenant"}]},{password:0},function(err, item){
-			  if(item){ res.json(200,{exist: true,data:item}); }
-			   else { res.json(200,{exist: false}); };
-			  if (err) {DbError(res,err) ;}
+			  collection.findOne({$and:[{"_id":req.params.idnumber},{"userrole.role" : "tenant"}]},{password:0},function(err, item){
+			  if(item){ res.status(200).json({exist: true,tenantdetails:item}); }
+			   if (err) {DbError(res,err) ;}
+			  // else { res.status(200).json({exist: false}); };
+			 
 			});
 			});
 			};
@@ -872,7 +874,6 @@
 
 
 
-
 	exports.listtenant = function(req, res) {
 		
 	 db.collection('user', function(err, collection) {
@@ -899,8 +900,63 @@
 	};
 
 
+    exports.checkin=function(req,res){
 
+    	console.log(req.body);
 
+    	var tenantunits=[];
+
+    	    req.body.units.forEach(function(item){
+                var det={};
+                     det.unitid=item._id;
+                     det.propertyid=item.propertyid;
+                     det.name=item.name;
+                     tenantunits.push(det);
+                     updateUnitStatus(item._id,req.body.tenantid,function(status,resp){
+                     
+                     	  if (status){}
+                     });
+    	    	     
+    	    });
+           console.log(tenantunits);
+        db.collection('user', function(err, collection) {
+	      collection.findAndModify({"_id":req.body.tenantid},{},{$set:{'occupationStatus':'occupied','units':tenantunits}},{ new: true }, function(err, item) {
+	        if (item) {
+	        	//console.log(item);
+				res.send(item);
+				}
+			else{
+				console.log(err);
+				DbError(res,err);
+			}
+			 
+	      }); 
+	    });
+
+    	   
+                    
+  
+
+    };
+
+    var updateUnitStatus=function(unitid,tenantid,callback){
+
+    db.collection('units', function(err, collection) {
+	collection.findAndModify({"_id":ObjectID(unitid)},{},{$set:{'occupationStatus':'occupied','tenantid':tenantid}},{ new: true },  function(err, item) {
+	        if (item) {
+
+				callback(true,item); 
+				}
+			else{
+				console.log("callback Error " );
+				console.log(err);
+				callback(false,err)
+			}
+			 
+	      }); 
+	    });
+
+    };
 
 
 
