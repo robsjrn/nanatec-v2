@@ -102,6 +102,10 @@ propertymanager.factory('propertyManagerSrv', ['$http', function($http) {
 			var promise =  $http.post(url + '/checkin',details); 
 			return promise;
 		    },
+		     checkout: function(details) {
+			var promise =  $http.post(url + '/checkout',details); 
+			return promise;
+		    },
 
               }
 	return data;

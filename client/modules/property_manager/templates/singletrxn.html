@@ -1,0 +1,99 @@
+      <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Single Transactions</h3>
+                
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    
+                  <div class="row">
+                   <div class="col-md-12">
+                    <div class="input-group input-group-sm">
+                    	<label for="invoice">Tenant Names </label>
+                      <input type="text" class="form-control" ng-model="model" placeholder=" Names / Contacts / Email " ng-keydown="selected=false"/> 
+						   <div class="items" ng-hide="!model.length || selected">
+							<div class="item" ng-repeat="item in tenants | filter:model  track by $index" ng-click="handleSelection(item._id)" style="cursor:pointer" ng-class="{active:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+								<p class="title">{{item.names}}</p>
+								<p class="subtitle">{{item.contact}} &nbsp  {{item.email}}</p>
+								<p class="subtitle">{{item.amountdue}}</p>
+							</div>
+						</div>
+                     </div>
+                   </div>
+                 </div>    
+
+                  <div class="row">
+                    <div class="col-md-6">
+                  	<div class="input-group input-group-sm">
+                  	<label for="invoice">Invoice / Receipt Number </label>
+					  <input type="text" class="form-control" placeholder="Invoice/Receipt No." aria-describedby="basic-addon1">
+					</div>
+                    </div>  
+    
+                   </div>
+
+                   <div class="row">
+                    <div class="col-md-6">
+                  	<div class="input-group input-group-sm">
+                  	<label for="amt">Amount</label>
+					  <input type="number" class="form-control" placeholder="Amount" aria-describedby="basic-addon1">
+					</div>
+                    </div>  
+    
+                   </div>
+
+
+                   <div class="row">
+                    <div class="col-md-6">
+                  	<div class="input-group input-group-sm">
+                  	<label for="amt">Transaction Date</label>
+					  <input type="date" class="form-control" placeholder="Transaction Date" aria-describedby="basic-addon1">
+					</div>
+                    </div>  
+    
+                   </div>
+
+
+                      
+
+                 <div class="row">
+					  <div class="col-md-6">
+					<div class="input-group input-group-sm">
+						  <label for="sel1">Payment Method</label>
+						  <select class="form-control" id="sel1">
+						    <option>Cash</option>
+						    <option>Mpesa</option>
+						    <option>Bank</option>
+						    <option>Cheque</option>
+						  </select>
+						</div>
+					  </div>
+				</div> 	
+
+
+
+                   
+
+                   <div class="row">
+                    <div class="col-md-6">  
+                    <div class="input-group input-group-sm">
+					    <label for="exampleTextarea">Payment Description</label>
+					    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+					  </div>
+					</div>
+				</div>  
+
+
+           	    <br/>
+
+                  <div class="row">
+                    <div class="col-md-12">  
+				     <button type="button" class="btn btn-primary btn-lg btn-block">Make Payment</button>
+                  	</div>
+			    	</div>  
+
+
+                  </div> 
+                </div> 
+         </div>         
+				

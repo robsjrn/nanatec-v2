@@ -17,6 +17,30 @@
     margin-left: -150px;
 
 }
+
+.item{
+	width: 400px;
+	margin: auto;
+	text-align: left;
+	margin-top: 10px;
+	background: #F2F2F2;
+	padding: 10px;
+	box-shadow: 0px 0px 5px #CCC;
+	background-color:  #1a53ff;
+}
+
+.item.title{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+
+.active{
+	background-color: #C44741;
+	color:#f2f2f2;
+}
+
 #floatingBarsG{
 position:relative;
 width:121px;

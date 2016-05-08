@@ -905,6 +905,7 @@
     	console.log(req.body);
 
     	var tenantunits=[];
+    	var checkindate = new Date();
 
     	    req.body.units.forEach(function(item){
                 var det={};
@@ -912,17 +913,22 @@
                      det.propertyid=item.propertyid;
                      det.name=item.name;
                      tenantunits.push(det);
-                     updateUnitStatus(item._id,req.body.tenantid,function(status,resp){
+                     updateUnitStatus(item._id,req.body.tenantid,'occupied',function(status,resp){
                      
                      	  if (status){}
                      });
     	    	     
     	    });
-           console.log(tenantunits);
         db.collection('user', function(err, collection) {
-	      collection.findAndModify({"_id":req.body.tenantid},{},{$set:{'occupationStatus':'occupied','units':tenantunits}},{ new: true }, function(err, item) {
+	      collection.findAndModify(
+	      	     {"_id":req.body.tenantid},{},
+	      	     { $set:{'occupationStatus':'occupied','units':tenantunits,'checkindate':checkindate},$inc: { 'amountdue': req.body.amountdue } },
+	      	     { new: true },
+	      	  
+
+	      	function(err, item) {
 	        if (item) {
-	        	//console.log(item);
+	        	//console.log(item); post transaction
 				res.send(item);
 				}
 			else{
@@ -939,10 +945,75 @@
 
     };
 
-    var updateUnitStatus=function(unitid,tenantid,callback){
+
+      exports.checkout=function(req,res){
+
+    	console.log(req.body);
+    	
+              var det ={};
+                     det.unitid=req.body.unit.unitid;
+                     det.propertyid=req.body.unit.propertyid;
+                     det.name=req.body.unit.name; 
+                     det.checkoutdate=new Date();;
+
+
+    	  if (req.body.setvacant){
+                   occupationStatus='vacant';
+    	  }else {occupationStatus='occupied';}
+
+
+       db.collection('units', function(err, collection) {
+	     collection.findAndModify({"_id":ObjectID(req.body.unit.unitid)},{},{$set:{'occupationStatus':'vacant','tenantid':''}},{ new: true },  function(err, item) {
+	        if (item) {
+                   
+				        db.collection('user', function(err, collection) {
+					      collection.findAndModify(
+					      	     {"_id":req.body.tenantid},{},
+					      	     { $pull: { 'units': { 'unitid': req.body.unit.unitid } },$push:{'tenantunitshistory':det},$set:{'occupationStatus':occupationStatus} },
+					      	     { new: true },
+					      	  
+
+					      	function(err, item) {
+					        if (item) {
+					        	console.log(item);
+								res.send(item);
+								}
+							else{
+								console.log(err);
+								DbError(res,err);
+							}
+							 
+					      }); 
+					    });    
+
+
+
+				}
+			else{
+				console.log("callback Error " );
+				console.log(err);
+				DbError(res,err);
+			
+			}
+			 
+	      }); 
+	    });
+
+
+
+
+
+    	   
+                    
+  
+
+    };
+
+
+    var updateUnitStatus=function(unitid,tenantid,occupationstatus,callback){
 
     db.collection('units', function(err, collection) {
-	collection.findAndModify({"_id":ObjectID(unitid)},{},{$set:{'occupationStatus':'occupied','tenantid':tenantid}},{ new: true },  function(err, item) {
+	collection.findAndModify({"_id":ObjectID(unitid)},{},{$set:{'occupationStatus':occupationstatus,'tenantid':tenantid}},{ new: true },  function(err, item) {
 	        if (item) {
 
 				callback(true,item); 
@@ -957,6 +1028,11 @@
 	    });
 
     };
+
+
+    ////////////////Transactions////////////////////////////
+
+    
 
 
 

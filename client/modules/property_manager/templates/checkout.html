@@ -3,9 +3,6 @@
               <div class="box box-success">
                 <div class="box-header with-border">
                   <h3 class="box-title">Check Out</h3>
-                 
-                   <button class="btn btn-lg btn-primary pull-right clearfix" ng-click="checkout()">Check-Out</button>
-                      
                                              
                 </div><!-- /.box-header -->
                    <div class="box-body no-padding">
@@ -14,7 +11,8 @@
           
                               <div class="box">
                                 <div class="box-header">
-                                  <h3 class="box-title">Tenant  Units    # {{tenantsdetails.length}}</h3>
+                                  <h3 class="box-title">Check out Tenant : {{tenantid}}  </h3>
+                                  <p><h3 class="box-title">Tenant Balance : {{tenantsdetails.amountdue}}  </h3></p>
                                   <div class="box-tools">
                                          <div class="input-group" style="width: 150px;">
                                               <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search"  ng-model="search"> </input>
@@ -27,8 +25,49 @@
                                  
                                 </div><!-- /.box-header -->
                                 <div class="box-body  no-padding">
-
-                                   Tenant Names   {{tenantsdetails.names}}
+                                 <div class="row">
+                                  <div class="col-md-12">
+                                   <h5 class="pull-right"> Tenant Details </h5>
+                             
+                                   
+                                   <table class="table table-hover table-responsive">
+                                    <tr>
+                                      <th>Tenant Names   </th>
+                                      <th>Tenant Contacts    </th>
+                                      <th>Tenant ID </th>
+                                      
+                                    </tr>
+                                     <tr >
+                                                <td>{{tenantsdetails.names}}</td>
+                                                <td>{{tenantsdetails.contact}}</td>
+                                                 <td>
+                                                   {{tenantsdetails._id}}
+                                                </td>
+                                             </tr> 
+                                  </table>
+                                 </div>
+                                </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                     <h5 class="pull-right"> Units Details  No. # {{units.length}} </h5>
+                                        <table class="table table-hover table-condensed table-bordered" >
+                                         
+                                             <tr>
+                                              <th>Unit Name</th>
+                                              <th>Action</th>
+                                             </tr>
+                                             
+                                             <tr ng-repeat="unit in units">
+                                                <td>{{unit.name}}</td>
+                                                 <td>
+                                                          <button class="btn btn-lg btn-primary" ng-click="checkout(unit,$index)">Check-Out</button>
+                                                </div>
+                                                </td>
+                                             </tr> 
+                                            
+                                        </table>  
+                                       </div>
+                                   </div> 
 
                                 </div>  
 

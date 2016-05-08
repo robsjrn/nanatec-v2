@@ -39,7 +39,11 @@ $httpProvider.interceptors.push('authInterceptor');
       .when('/', {
          templateUrl : 'property_manager/views/dashboard.html',
           controller  : 'dashboardCtrl'
-        })  
+        }) 
+        .when('/settings', {
+         templateUrl : 'Settings.html',
+          controller  : 'settingsCtrl'
+        }) 
       .when('/properties', {
          templateUrl : 'property_manager/views/properties.html',
           controller  : 'PropertyCtrl'
@@ -69,11 +73,11 @@ $httpProvider.interceptors.push('authInterceptor');
           controller  : 'checkinCtrl'
         })
        .when('/singletrxn', {
-         templateUrl : 'property_manager/views/singletrxn.html',
+         templateUrl : 'singletrxn.html',
           controller  : 'singletrxnCtrl'
         })
        .when('/batchtrxn', {
-         templateUrl : 'property_manager/views/batchtrxn.html',
+         templateUrl : 'batchtrxn.html',
           controller  : 'batchtrxnCtrl'
         })
         .when('/unathorised', {

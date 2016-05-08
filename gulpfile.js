@@ -19,7 +19,7 @@ server      = require('gulp-express');
 files = {
   libs_js  : [
      'client/libs/jquery/dist/jquery.min.js',
-      'client/libs/angular/angular.js',
+     'client/libs/angular/angular.js',
      'client/libs/angular-route/angular-route.js',
      'client/libs/angular-ui-router/release/angular-ui-router.js' ,
      'client/libs/angular-messages/angular-messages.js' ,  
@@ -227,6 +227,6 @@ gulp.task('server', function(){
 });
 
 
-gulp.task('dev', ['server','libs_js','libs_css','propertyManager_css','propertyManager_js','propertyManager_templates','login_js','home_page_css','home_page_js','home_page_templates']);
+gulp.task('dev', ['libs_js','libs_css','propertyManager_css','propertyManager_js','propertyManager_templates','login_js','home_page_css','home_page_js','home_page_templates']);
 gulp.task('prod', ['propertyManager_js','propertyManager_templates','propertyManager_css']);
 

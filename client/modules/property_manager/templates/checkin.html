@@ -2,18 +2,18 @@
               <!-- MAP & BOX PANE -->
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Check in</h3>
+                  <h3 class="box-title">Check in  Tenant  {{tenantid}}</h3>
                   <h3> <b>Amount Due </b> <b> {{dueAmount}}</b></h3>
 
                    <button class="btn btn-lg btn-warning pull-right clearfix" ng-click="checkin()">Check-In</button>
                       
                                              
                 </div><!-- /.box-header -->
-                   <div class="box-body no-padding">
-           
-              
-          
-                              <div class="box">
+             
+                </div>
+                      <div class="row">
+                         <div class="col-md-8">  
+                               <div class="box">
                                 <div class="box-header">
                                   <h3 class="box-title">List of Vacant Units    # {{vacantunits.length}}</h3>
                                   <div class="box-tools">
@@ -28,10 +28,6 @@
                                  
                                 </div><!-- /.box-header -->
                                 <div class="box-body  no-padding">
-
-                                 <div class="row"> 
-                                  <div class="col-md-7">
-                                     
                                   <table class="table table-hover table-responsive">
                                     <tr>
                                       <th>#</th>
@@ -63,15 +59,21 @@
                                   <dir-pagination-controls   max-size="6"  direction-links="true"  boundary-links="true" class="pull-right" pagination-id="vacant">  
                                   </dir-pagination-controls>
                                   </div>
-                                
-                                     <div class="col-md-5">
-
-                                           
-
-                                         
-                                      
+                                 
+                            </div>
+                           </div>
+                           <div class="col-md-4">   
+                          <div class="box">
+                               <div class="box-header">
+                                  <h3 class="box-title">Unit(S) Selected  # {{assignedunits.length}}</h3>
+                                  <div class="box-tools">
+                                       <small> Units Selected  </small>
+                                  </div>
+                                 
+                                </div>
+                                <div class="box-body no-padding">
                                         <table class="table table-hover table-condensed table-bordered" >
-                                          <h2>Unit(S) Selected  # {{assignedunits.length}}</h2>
+                                         
                                              <tr>
                                               <th>Unit Name</th>
                                               <th>Amount</th>
@@ -90,18 +92,14 @@
                                                 </td>
                                              </tr> 
                                             
-                                        </table>  
-
-
-                                                 
+                                        </table>                                          
                                  </div> 
+                               </div> 
+                           </div>
+                          </div>   
 
-                                </div>  
-
-                            </div>  
-                   </div>
-              </div>
-          </div>    
+        </div>
+     
                 
     
 

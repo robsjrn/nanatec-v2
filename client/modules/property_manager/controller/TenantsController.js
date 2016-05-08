@@ -23,8 +23,8 @@ propertymanager.controller('tenantsCtrl', ['$scope','ngDialog','$window','proper
                     className: 'ngdialog-theme-default',
                     scope: $scope
                 }).then(function (value) {
-                  console.log(value);
                     $scope.ten=value;
+                    $scope.ten.amountdue=0;
                 	propertyManagerSrv.createTenant($scope.ten) 
                 	  .success(function (data) {
                 	  	      $scope.tenants.push($scope.ten);

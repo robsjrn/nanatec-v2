@@ -118,6 +118,6 @@ var express = require('express'),
 
 
    router.post('/checkin',ensureAuthenticated,postrequest,DatabaseConn.checkin);
-
+   router.post('/checkout',ensureAuthenticated,postrequest,DatabaseConn.checkout);
 			
 module.exports = router;
